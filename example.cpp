@@ -1,13 +1,15 @@
 
-//#define IFLOG_USE 0
+#define IFLOG_ENABLE_FEATURE_LOCK_OSTREAMBUF
+//#define IFLOG_DISABLE_LOG
+//#define IFLOG_ENABLE_FEATURE_LOG_LEVEL
 //#define IFLOG_FUNCMACRO __FUNCSIG__
-//#define IFLOG_ENABLE_FEATURE_LOG_LEVEL 1
 #include "iflog.hpp"
 #include <iostream>
 #include <string>
 #include <memory>
 
 //int iflog::iflog::loglevel = 3;
+std::mutex iflog::iflog::mtx;
 
 bool is_error()
 {
@@ -73,7 +75,7 @@ int main()
     iserror = IFLOG(is_error(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     std::unique_ptr<hoge> p0(IFLOG(new hoge()));
-#if IFLOG_USE
+#ifndef IFLOG_DISABLE_LOG
     std::unique_ptr<hoge> p1  = IFLOG_MOVE(p0);
     std::unique_ptr<hoge> p2  = IFLOG_MOVE(p1 , 1);
     std::unique_ptr<hoge> p3  = IFLOG_MOVE(p2 , 1, 2);
