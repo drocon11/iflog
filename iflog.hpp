@@ -46,8 +46,8 @@
 #include <cstddef>      // std::size_t
 #include <mutex>        // std::mutex, std::lock_guard
 
-//#define IFLOG_ENABLE_FEATURE_LOCK_OSTREAMBUF  // std::mutex iflog::iflog::mtx;
-//#define IFLOG_ENABLE_FEATURE_LOG_LEVEL        // int iflog::iflog::loglevel = 3;
+//#define IFLOG_ENABLE_FEATURE_THREAD_SAFE  // std::mutex iflog::iflog::mtx;
+//#define IFLOG_ENABLE_FEATURE_LOG_LEVEL    // int iflog::iflog::loglevel = 3;
 
 // Logging level of IFLOG, IFLOG_RETV, IFLOG_MOVE, IFLOG_VOID.
 #ifndef IFLOG_DEFAULT_LOG_LEVEL
@@ -78,8 +78,8 @@
     #define IFLOG_VALUE_SEPARATOR " => "
 #endif
 
-#ifndef IFLOG_CUSTOM_OSTREAMBUF
-    #define IFLOG_CUSTOM_OSTREAMBUF std::cout
+#ifndef IFLOG_CUSTOM_OSTREAM
+    #define IFLOG_CUSTOM_OSTREAM std::cout
 #endif
 
 #define IFLOG(...)          IFLOGX_RETV(IFLOG_DEFAULT_LOG_LEVEL,__VA_ARGS__)
@@ -190,10 +190,10 @@ struct iflog
 
 void output_line(const std::string& s)
 {
-#ifdef IFLOG_ENABLE_FEATURE_LOCK_OSTREAMBUF
+#ifdef IFLOG_ENABLE_FEATURE_THREAD_SAFE
     std::lock_guard<std::mutex> lock(iflog::iflog::mtx);
 #endif
-    IFLOG_CUSTOM_OSTREAMBUF << s << std::endl;
+    IFLOG_CUSTOM_OSTREAM << s << std::endl;
 }
 
 void output_header(std::ostream& os, int level, const char* file, const char* func, int line)
