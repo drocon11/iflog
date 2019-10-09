@@ -188,7 +188,7 @@ struct iflog
     static std::mutex mtx;
 };
 
-void output_line(const std::string& s)
+static inline void output_line(const std::string& s)
 {
 #ifdef IFLOG_ENABLE_FEATURE_THREAD_SAFE
     std::lock_guard<std::mutex> lock(iflog::iflog::mtx);
@@ -196,30 +196,30 @@ void output_line(const std::string& s)
     IFLOG_CUSTOM_OSTREAM << s << std::endl;
 }
 
-void output_header(std::ostream& os, int level, const char* file, const char* func, int line)
+static inline void output_header(std::ostream& os, int level, const char* file, const char* func, int line)
 {
     os << IFLOG_HEADER_TO_OSTREAM;
 }
 
 template<typename Value>
-auto output_param(std::ostream& os, const char* separator, const char* name, const Value& printable_value)
+static inline auto output_param(std::ostream& os, const char* separator, const char* name, const Value& printable_value)
 -> decltype(std::declval<std::ostream&>() << std::declval<const Value&>(), void())
 {
     os << separator << name << IFLOG_VALUE_SEPARATOR << printable_value;
 }
 
-auto output_param(std::ostream& os, const char* separator, const char* name, ...)
+static inline auto output_param(std::ostream& os, const char* separator, const char* name, ...)
 -> void
 {
     os << separator << name;
 }
 
 template<std::size_t Index, typename... Values>
-inline typename std::enable_if<Index >= sizeof...(Values), void>::type
+static inline typename std::enable_if<Index >= sizeof...(Values), void>::type
 output_params(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values) {}
 
 template<std::size_t Index, typename... Values>
-inline typename std::enable_if<Index < sizeof...(Values), void>::type
+static inline typename std::enable_if<Index < sizeof...(Values), void>::type
 output_params(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values)
 {
     output_param(os, IFLOG_PARAM_SEPARATOR, names[Index], std::get<Index>(values));
@@ -227,7 +227,7 @@ output_params(std::ostream& os, const std::vector<const char*>& names, const std
 }
 
 template<typename... Values>
-auto log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
+static inline auto log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
     if (level > iflog::iflog::loglevel)
@@ -244,7 +244,7 @@ auto log_return_value(int level, const char* file, const char* func, int line, s
 }
 
 template<typename... Values>
-auto log_return_move(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
+static inline auto log_return_move(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
     if (level > iflog::iflog::loglevel)
@@ -261,7 +261,7 @@ auto log_return_move(int level, const char* file, const char* func, int line, st
 }
 
 template<typename... Values>
-void log_non_return(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
+static inline void log_non_return(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
     if (level > iflog::iflog::loglevel)

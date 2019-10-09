@@ -1,4 +1,10 @@
 
+//#define IFLOG_ENABLE_FEATURE_LOG_LEVEL
+#define IFLOG_HEADER_TO_OSTREAM "LOG" << level << ":" << IFLOG_FILENAME(file) << ":" << func << " | " << std::boolalpha << std::showpoint << std::showbase
+//#define IFLOG_HEADER_TO_OSTREAM "LOG" << level << ":" << IFLOG_FILENAME(file) << ":" << func << "@" << line << " | " << std::boolalpha << std::showpoint << std::showbase
+#include <sstream>
+static std::ostringstream g_oss;
+#define IFLOG_CUSTOM_OSTREAM g_oss
 #define IFLOG_ENABLE_FEATURE_THREAD_SAFE
 //#define IFLOG_DISABLE_LOG
 //#define IFLOG_ENABLE_FEATURE_LOG_LEVEL
@@ -7,16 +13,19 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <cassert>
+
+int iflog::iflog::loglevel = 3;
 
 //int iflog::iflog::loglevel = 3;
-std::mutex iflog::iflog::mtx;
+//std::mutex iflog::iflog::mtx;
 
-bool is_error()
+static bool is_error()
 {
     return true;
 }
 
-void void_func()
+static void void_func()
 {
 }
 
@@ -54,14 +63,24 @@ public:
 
 struct hoge {};
 
-extern void test_iflog();
-
-int main()
+void test_iflog()
 {
     const char* a = "v";
     bool iserror;
-    IFLOG(a);
-    IFLOG(a, a, a, a, a, a, a, a, a, a, a);
+
+    assert(a == IFLOG(a));
+    assert(g_oss.str() == "LOG3:test_iflog.cpp:test_iflog | a => v\n");
+    g_oss.str("");
+
+    assert(a == IFLOG(a, a, a, a, a, a, a, a, a, a, a));
+    assert(g_oss.str() == "LOG3:test_iflog.cpp:test_iflog | a => v , a => v , a => v , a => v , a => v , a => v , a => v , a => v , a => v , a => v , a => v\n");
+    g_oss.str("");
+
+    AAA aaa = IFLOG_MOVE(AAA());
+    assert(g_oss.str() == "LOG3:test_iflog.cpp:test_iflog | AAA()\n");
+    g_oss.str("");
+
+    std::cout << g_oss.str();
     IFLOG("abc");
     iserror = IFLOG(is_error());
     iserror = IFLOG(is_error(), 1);
@@ -118,5 +137,5 @@ int main()
     IFLOG(runner->run());
     IFLOG_VOID(delete runner);
 
-    test_iflog();
+//    std::cout << g_oss.str();
 }
