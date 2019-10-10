@@ -1,6 +1,6 @@
 //
 // iflog - C++ interface logging library. Easy to insert into if condition.
-// vesion 0.0.2
+// vesion 0.0.3
 // https://github.com/drocon11/iflog
 // Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 // Copyright (c) 2019 Yukinori Yamazoe
