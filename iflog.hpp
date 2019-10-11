@@ -144,41 +144,41 @@
 #define IFLOG_MSVC_EXPAND_VA_ARGS(x) x
 #define IFLOG_GET_MACRONAME(_0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,MACRONAME,...) MACRONAME
 
-#define IFLOG_RETV_00(lv,f)                                iflog::log_return_value<decltype(f)                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f                                         },{f                               })
-#define IFLOG_RETV_01(lv,f,a1)                             iflog::log_return_value<decltype(f),decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1                                     },{f,a1                            })
-#define IFLOG_RETV_02(lv,f,a1,a2)                          iflog::log_return_value<decltype(f),decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2                                 },{f,a1,a2                         })
-#define IFLOG_RETV_03(lv,f,a1,a2,a3)                       iflog::log_return_value<decltype(f),decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3                             },{f,a1,a2,a3                      })
-#define IFLOG_RETV_04(lv,f,a1,a2,a3,a4)                    iflog::log_return_value<decltype(f),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4                         },{f,a1,a2,a3,a4                   })
-#define IFLOG_RETV_05(lv,f,a1,a2,a3,a4,a5)                 iflog::log_return_value<decltype(f),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5                     },{f,a1,a2,a3,a4,a5                })
-#define IFLOG_RETV_06(lv,f,a1,a2,a3,a4,a5,a6)              iflog::log_return_value<decltype(f),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6                 },{f,a1,a2,a3,a4,a5,a6             })
-#define IFLOG_RETV_07(lv,f,a1,a2,a3,a4,a5,a6,a7)           iflog::log_return_value<decltype(f),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{f,a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_RETV_08(lv,f,a1,a2,a3,a4,a5,a6,a7,a8)        iflog::log_return_value<decltype(f),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{f,a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_RETV_09(lv,f,a1,a2,a3,a4,a5,a6,a7,a8,a9)     iflog::log_return_value<decltype(f),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{f,a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_RETV_10(lv,f,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_value<decltype(f),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{f,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
+#define IFLOG_RETV_00(lv,expr)                                iflog::log_return_value<decltype(expr)                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{expr                               })
+#define IFLOG_RETV_01(lv,expr,a1)                             iflog::log_return_value<decltype(expr),decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{expr,a1                            })
+#define IFLOG_RETV_02(lv,expr,a1,a2)                          iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{expr,a1,a2                         })
+#define IFLOG_RETV_03(lv,expr,a1,a2,a3)                       iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{expr,a1,a2,a3                      })
+#define IFLOG_RETV_04(lv,expr,a1,a2,a3,a4)                    iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{expr,a1,a2,a3,a4                   })
+#define IFLOG_RETV_05(lv,expr,a1,a2,a3,a4,a5)                 iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{expr,a1,a2,a3,a4,a5                })
+#define IFLOG_RETV_06(lv,expr,a1,a2,a3,a4,a5,a6)              iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{expr,a1,a2,a3,a4,a5,a6             })
+#define IFLOG_RETV_07(lv,expr,a1,a2,a3,a4,a5,a6,a7)           iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{expr,a1,a2,a3,a4,a5,a6,a7          })
+#define IFLOG_RETV_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8)        iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{expr,a1,a2,a3,a4,a5,a6,a7,a8       })
+#define IFLOG_RETV_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9)     iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    })
+#define IFLOG_RETV_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
 
-#define IFLOG_MOVE_00(lv,f)                                iflog::log_return_move<decltype(f)&&                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f                                         },{std::move(f)                               })
-#define IFLOG_MOVE_01(lv,f,a1)                             iflog::log_return_move<decltype(f)&&,decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1                                     },{std::move(f),a1                            })
-#define IFLOG_MOVE_02(lv,f,a1,a2)                          iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2                                 },{std::move(f),a1,a2                         })
-#define IFLOG_MOVE_03(lv,f,a1,a2,a3)                       iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3                             },{std::move(f),a1,a2,a3                      })
-#define IFLOG_MOVE_04(lv,f,a1,a2,a3,a4)                    iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4                         },{std::move(f),a1,a2,a3,a4                   })
-#define IFLOG_MOVE_05(lv,f,a1,a2,a3,a4,a5)                 iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5                     },{std::move(f),a1,a2,a3,a4,a5                })
-#define IFLOG_MOVE_06(lv,f,a1,a2,a3,a4,a5,a6)              iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6                 },{std::move(f),a1,a2,a3,a4,a5,a6             })
-#define IFLOG_MOVE_07(lv,f,a1,a2,a3,a4,a5,a6,a7)           iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{std::move(f),a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_MOVE_08(lv,f,a1,a2,a3,a4,a5,a6,a7,a8)        iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{std::move(f),a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_MOVE_09(lv,f,a1,a2,a3,a4,a5,a6,a7,a8,a9)     iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{std::move(f),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_MOVE_10(lv,f,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_move<decltype(f)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{std::move(f),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
+#define IFLOG_MOVE_00(lv,expr)                                iflog::log_return_move<decltype(expr)&&                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{std::move(expr)                               })
+#define IFLOG_MOVE_01(lv,expr,a1)                             iflog::log_return_move<decltype(expr)&&,decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{std::move(expr),a1                            })
+#define IFLOG_MOVE_02(lv,expr,a1,a2)                          iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{std::move(expr),a1,a2                         })
+#define IFLOG_MOVE_03(lv,expr,a1,a2,a3)                       iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{std::move(expr),a1,a2,a3                      })
+#define IFLOG_MOVE_04(lv,expr,a1,a2,a3,a4)                    iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{std::move(expr),a1,a2,a3,a4                   })
+#define IFLOG_MOVE_05(lv,expr,a1,a2,a3,a4,a5)                 iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{std::move(expr),a1,a2,a3,a4,a5                })
+#define IFLOG_MOVE_06(lv,expr,a1,a2,a3,a4,a5,a6)              iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{std::move(expr),a1,a2,a3,a4,a5,a6             })
+#define IFLOG_MOVE_07(lv,expr,a1,a2,a3,a4,a5,a6,a7)           iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{std::move(expr),a1,a2,a3,a4,a5,a6,a7          })
+#define IFLOG_MOVE_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8)        iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8       })
+#define IFLOG_MOVE_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9)     iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
+#define IFLOG_MOVE_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
 
-#define IFLOG_VOID_00(lv,f)                                iflog::log_non_return<nullptr_t                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f                                         },{nullptr                               })
-#define IFLOG_VOID_01(lv,f,a1)                             iflog::log_non_return<nullptr_t,decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1                                     },{nullptr,a1                            })
-#define IFLOG_VOID_02(lv,f,a1,a2)                          iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2                                 },{nullptr,a1,a2                         })
-#define IFLOG_VOID_03(lv,f,a1,a2,a3)                       iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3                             },{nullptr,a1,a2,a3                      })
-#define IFLOG_VOID_04(lv,f,a1,a2,a3,a4)                    iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4                         },{nullptr,a1,a2,a3,a4                   })
-#define IFLOG_VOID_05(lv,f,a1,a2,a3,a4,a5)                 iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5                     },{nullptr,a1,a2,a3,a4,a5                })
-#define IFLOG_VOID_06(lv,f,a1,a2,a3,a4,a5,a6)              iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6                 },{nullptr,a1,a2,a3,a4,a5,a6             })
-#define IFLOG_VOID_07(lv,f,a1,a2,a3,a4,a5,a6,a7)           iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{nullptr,a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_VOID_08(lv,f,a1,a2,a3,a4,a5,a6,a7,a8)        iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{nullptr,a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_VOID_09(lv,f,a1,a2,a3,a4,a5,a6,a7,a8,a9)     iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{nullptr,a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_VOID_10(lv,f,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#f,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{nullptr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
+#define IFLOG_VOID_00(lv,expr)                                iflog::log_non_return<nullptr_t                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{nullptr                               })
+#define IFLOG_VOID_01(lv,expr,a1)                             iflog::log_non_return<nullptr_t,decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{nullptr,a1                            })
+#define IFLOG_VOID_02(lv,expr,a1,a2)                          iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{nullptr,a1,a2                         })
+#define IFLOG_VOID_03(lv,expr,a1,a2,a3)                       iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{nullptr,a1,a2,a3                      })
+#define IFLOG_VOID_04(lv,expr,a1,a2,a3,a4)                    iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{nullptr,a1,a2,a3,a4                   })
+#define IFLOG_VOID_05(lv,expr,a1,a2,a3,a4,a5)                 iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{nullptr,a1,a2,a3,a4,a5                })
+#define IFLOG_VOID_06(lv,expr,a1,a2,a3,a4,a5,a6)              iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{nullptr,a1,a2,a3,a4,a5,a6             })
+#define IFLOG_VOID_07(lv,expr,a1,a2,a3,a4,a5,a6,a7)           iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{nullptr,a1,a2,a3,a4,a5,a6,a7          })
+#define IFLOG_VOID_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8)        iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{nullptr,a1,a2,a3,a4,a5,a6,a7,a8       })
+#define IFLOG_VOID_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9)     iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{nullptr,a1,a2,a3,a4,a5,a6,a7,a8,a9    })
+#define IFLOG_VOID_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_non_return<nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{nullptr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
 
 namespace iflog {
 
@@ -280,50 +280,50 @@ static inline void log_non_return(int level, const char* file, const char* func,
 
 #else // IFLOG_DISABLE_LOG
 
-#define IFLOG(f,...)        f
-#define IFLOG_RETV(f,...)   f
-#define IFLOG_MOVE(f,...)   f
-#define IFLOG_VOID(f,...)   f
-#define IFLOG0(f,...)       f
-#define IFLOG1(f,...)       f
-#define IFLOG2(f,...)       f
-#define IFLOG3(f,...)       f
-#define IFLOG4(f,...)       f
-#define IFLOG5(f,...)       f
-#define IFLOG6(f,...)       f
-#define IFLOG7(f,...)       f
-#define IFLOG8(f,...)       f
-#define IFLOG9(f,...)       f
-#define IFLOG0_RETV(f,...)  f
-#define IFLOG1_RETV(f,...)  f
-#define IFLOG2_RETV(f,...)  f
-#define IFLOG3_RETV(f,...)  f
-#define IFLOG4_RETV(f,...)  f
-#define IFLOG5_RETV(f,...)  f
-#define IFLOG6_RETV(f,...)  f
-#define IFLOG7_RETV(f,...)  f
-#define IFLOG8_RETV(f,...)  f
-#define IFLOG9_RETV(f,...)  f
-#define IFLOG0_MOVE(f,...)  f
-#define IFLOG1_MOVE(f,...)  f
-#define IFLOG2_MOVE(f,...)  f
-#define IFLOG3_MOVE(f,...)  f
-#define IFLOG4_MOVE(f,...)  f
-#define IFLOG5_MOVE(f,...)  f
-#define IFLOG6_MOVE(f,...)  f
-#define IFLOG7_MOVE(f,...)  f
-#define IFLOG8_MOVE(f,...)  f
-#define IFLOG9_MOVE(f,...)  f
-#define IFLOG0_VOID(f,...)  f
-#define IFLOG1_VOID(f,...)  f
-#define IFLOG2_VOID(f,...)  f
-#define IFLOG3_VOID(f,...)  f
-#define IFLOG4_VOID(f,...)  f
-#define IFLOG5_VOID(f,...)  f
-#define IFLOG6_VOID(f,...)  f
-#define IFLOG7_VOID(f,...)  f
-#define IFLOG8_VOID(f,...)  f
-#define IFLOG9_VOID(f,...)  f
+#define IFLOG(expr,...)        expr
+#define IFLOG_RETV(expr,...)   expr
+#define IFLOG_MOVE(expr,...)   expr
+#define IFLOG_VOID(expr,...)   expr
+#define IFLOG0(expr,...)       expr
+#define IFLOG1(expr,...)       expr
+#define IFLOG2(expr,...)       expr
+#define IFLOG3(expr,...)       expr
+#define IFLOG4(expr,...)       expr
+#define IFLOG5(expr,...)       expr
+#define IFLOG6(expr,...)       expr
+#define IFLOG7(expr,...)       expr
+#define IFLOG8(expr,...)       expr
+#define IFLOG9(expr,...)       expr
+#define IFLOG0_RETV(expr,...)  expr
+#define IFLOG1_RETV(expr,...)  expr
+#define IFLOG2_RETV(expr,...)  expr
+#define IFLOG3_RETV(expr,...)  expr
+#define IFLOG4_RETV(expr,...)  expr
+#define IFLOG5_RETV(expr,...)  expr
+#define IFLOG6_RETV(expr,...)  expr
+#define IFLOG7_RETV(expr,...)  expr
+#define IFLOG8_RETV(expr,...)  expr
+#define IFLOG9_RETV(expr,...)  expr
+#define IFLOG0_MOVE(expr,...)  expr
+#define IFLOG1_MOVE(expr,...)  expr
+#define IFLOG2_MOVE(expr,...)  expr
+#define IFLOG3_MOVE(expr,...)  expr
+#define IFLOG4_MOVE(expr,...)  expr
+#define IFLOG5_MOVE(expr,...)  expr
+#define IFLOG6_MOVE(expr,...)  expr
+#define IFLOG7_MOVE(expr,...)  expr
+#define IFLOG8_MOVE(expr,...)  expr
+#define IFLOG9_MOVE(expr,...)  expr
+#define IFLOG0_VOID(expr,...)  expr
+#define IFLOG1_VOID(expr,...)  expr
+#define IFLOG2_VOID(expr,...)  expr
+#define IFLOG3_VOID(expr,...)  expr
+#define IFLOG4_VOID(expr,...)  expr
+#define IFLOG5_VOID(expr,...)  expr
+#define IFLOG6_VOID(expr,...)  expr
+#define IFLOG7_VOID(expr,...)  expr
+#define IFLOG8_VOID(expr,...)  expr
+#define IFLOG9_VOID(expr,...)  expr
 
 #endif // IFLOG_DISABLE_LOG
 
