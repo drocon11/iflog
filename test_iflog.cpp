@@ -81,7 +81,7 @@ void test_iflog()
     g_oss.str("");
 
     std::cout << g_oss.str();
-    IFLOG("abc");
+//  IFLOG("abc");
     iserror = IFLOG(is_error());
     iserror = IFLOG(is_error(), 1);
     iserror = IFLOG(is_error(), 1, 2);

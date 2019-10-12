@@ -62,7 +62,7 @@ int main()
     bool iserror;
     IFLOG(a);
     IFLOG(a, a, a, a, a, a, a, a, a, a, a);
-    IFLOG("abc");
+//  IFLOG("abc");
     iserror = IFLOG(is_error());
     iserror = IFLOG(is_error(), 1);
     iserror = IFLOG(is_error(), 1, 2);
