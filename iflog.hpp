@@ -231,10 +231,7 @@ template<typename Expr>
 static inline Expr log_return_value(int level, const char* file, const char* func, int line, const char* exprstr, Expr exprval)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel)
-    {
-        return exprval;
-    }
+    if (level > iflog::iflog::loglevel) { return exprval; }
 #endif
     std::ostringstream oss;
     output_header(oss, level, file, func, line);
@@ -247,10 +244,7 @@ template<typename Expr, typename... Values>
 static inline Expr log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel)
-    {
-        return std::get<0>(values);
-    }
+    if (level > iflog::iflog::loglevel) { return std::get<0>(values); }
 #endif
     std::ostringstream oss;
     output_header(oss, level, file, func, line);
@@ -265,10 +259,7 @@ template<typename Expr>
 static inline Expr log_return_move(int level, const char* file, const char* func, int line, const char* exprstr, Expr exprval)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel)
-    {
-        return std::move(exprval);
-    }
+    if (level > iflog::iflog::loglevel) { return std::move(exprval); }
 #endif
     std::ostringstream oss;
     output_header(oss, level, file, func, line);
@@ -281,10 +272,7 @@ template<typename Expr, typename... Values>
 static inline Expr log_return_move(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel)
-    {
-        return std::move(std::get<0>(values));
-    }
+    if (level > iflog::iflog::loglevel) { return std::move(std::get<0>(values)); }
 #endif
     std::ostringstream oss;
     output_header(oss, level, file, func, line);
@@ -299,10 +287,7 @@ template<typename Expr>
 static inline void log_non_return(int level, const char* file, const char* func, int line, const char* exprstr, Expr /*exprval*/)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel)
-    {
-        return;
-    }
+    if (level > iflog::iflog::loglevel) { return; }
 #endif
     std::ostringstream oss;
     output_header(oss, level, file, func, line);
@@ -314,10 +299,7 @@ template<typename... Values>
 static inline void log_non_return(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel)
-    {
-        return;
-    }
+    if (level > iflog::iflog::loglevel) { return; }
 #endif
     std::ostringstream oss;
     output_header(oss, level, file, func, line);
