@@ -280,50 +280,61 @@ static inline void log_non_return(int level, const char* file, const char* func,
 
 #else // IFLOG_DISABLE_LOG
 
-#define IFLOG(expr,...)       expr
-#define IFLOG_RETV(expr,...)  expr
-#define IFLOG_MOVE(expr,...)  expr
-#define IFLOG_VOID(expr,...)  expr
-#define IFLOG0(expr,...)      expr
-#define IFLOG1(expr,...)      expr
-#define IFLOG2(expr,...)      expr
-#define IFLOG3(expr,...)      expr
-#define IFLOG4(expr,...)      expr
-#define IFLOG5(expr,...)      expr
-#define IFLOG6(expr,...)      expr
-#define IFLOG7(expr,...)      expr
-#define IFLOG8(expr,...)      expr
-#define IFLOG9(expr,...)      expr
-#define IFLOG0_RETV(expr,...) expr
-#define IFLOG1_RETV(expr,...) expr
-#define IFLOG2_RETV(expr,...) expr
-#define IFLOG3_RETV(expr,...) expr
-#define IFLOG4_RETV(expr,...) expr
-#define IFLOG5_RETV(expr,...) expr
-#define IFLOG6_RETV(expr,...) expr
-#define IFLOG7_RETV(expr,...) expr
-#define IFLOG8_RETV(expr,...) expr
-#define IFLOG9_RETV(expr,...) expr
-#define IFLOG0_MOVE(expr,...) expr
-#define IFLOG1_MOVE(expr,...) expr
-#define IFLOG2_MOVE(expr,...) expr
-#define IFLOG3_MOVE(expr,...) expr
-#define IFLOG4_MOVE(expr,...) expr
-#define IFLOG5_MOVE(expr,...) expr
-#define IFLOG6_MOVE(expr,...) expr
-#define IFLOG7_MOVE(expr,...) expr
-#define IFLOG8_MOVE(expr,...) expr
-#define IFLOG9_MOVE(expr,...) expr
-#define IFLOG0_VOID(expr,...) expr
-#define IFLOG1_VOID(expr,...) expr
-#define IFLOG2_VOID(expr,...) expr
-#define IFLOG3_VOID(expr,...) expr
-#define IFLOG4_VOID(expr,...) expr
-#define IFLOG5_VOID(expr,...) expr
-#define IFLOG6_VOID(expr,...) expr
-#define IFLOG7_VOID(expr,...) expr
-#define IFLOG8_VOID(expr,...) expr
-#define IFLOG9_VOID(expr,...) expr
+namespace iflog {
+struct iflog
+{
+    static int loglevel;
+    static std::mutex mtx;
+};
+}
+
+#define IFLOG(expr,...)          expr
+#define IFLOG_RETV(expr,...)     expr
+#define IFLOG_MOVE(expr,...)     expr
+#define IFLOG_VOID(expr,...)     expr
+#define IFLOG0(expr,...)         expr
+#define IFLOG1(expr,...)         expr
+#define IFLOG2(expr,...)         expr
+#define IFLOG3(expr,...)         expr
+#define IFLOG4(expr,...)         expr
+#define IFLOG5(expr,...)         expr
+#define IFLOG6(expr,...)         expr
+#define IFLOG7(expr,...)         expr
+#define IFLOG8(expr,...)         expr
+#define IFLOG9(expr,...)         expr
+#define IFLOG0_RETV(expr,...)    expr
+#define IFLOG1_RETV(expr,...)    expr
+#define IFLOG2_RETV(expr,...)    expr
+#define IFLOG3_RETV(expr,...)    expr
+#define IFLOG4_RETV(expr,...)    expr
+#define IFLOG5_RETV(expr,...)    expr
+#define IFLOG6_RETV(expr,...)    expr
+#define IFLOG7_RETV(expr,...)    expr
+#define IFLOG8_RETV(expr,...)    expr
+#define IFLOG9_RETV(expr,...)    expr
+#define IFLOG0_MOVE(expr,...)    expr
+#define IFLOG1_MOVE(expr,...)    expr
+#define IFLOG2_MOVE(expr,...)    expr
+#define IFLOG3_MOVE(expr,...)    expr
+#define IFLOG4_MOVE(expr,...)    expr
+#define IFLOG5_MOVE(expr,...)    expr
+#define IFLOG6_MOVE(expr,...)    expr
+#define IFLOG7_MOVE(expr,...)    expr
+#define IFLOG8_MOVE(expr,...)    expr
+#define IFLOG9_MOVE(expr,...)    expr
+#define IFLOG0_VOID(expr,...)    expr
+#define IFLOG1_VOID(expr,...)    expr
+#define IFLOG2_VOID(expr,...)    expr
+#define IFLOG3_VOID(expr,...)    expr
+#define IFLOG4_VOID(expr,...)    expr
+#define IFLOG5_VOID(expr,...)    expr
+#define IFLOG6_VOID(expr,...)    expr
+#define IFLOG7_VOID(expr,...)    expr
+#define IFLOG8_VOID(expr,...)    expr
+#define IFLOG9_VOID(expr,...)    expr
+#define IFLOGL_RETV(lv,expr,...) expr
+#define IFLOGL_MOVE(lv,expr,...) expr
+#define IFLOGL_VOID(lv,expr,...) expr
 
 #endif // IFLOG_DISABLE_LOG
 
