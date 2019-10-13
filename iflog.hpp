@@ -185,7 +185,7 @@ struct iflogger : iflog {
 // Partial specialization
 template<typename... Values>
 struct iflogger<void, Values...> : iflog {
-    static void log(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<nullptr_t, Values...> values)
+    static void log(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<std::nullptr_t, Values...> values)
     {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
         if (level > iflog::iflog::loglevel) { return; }
@@ -193,7 +193,7 @@ struct iflogger<void, Values...> : iflog {
         std::ostringstream oss;
         output_header(oss, level, file, func, line);
         output_param(oss, "", names[0]);
-        output_params<1, nullptr_t, Values...>(oss, names, values);
+        output_params<1, std::nullptr_t, Values...>(oss, names, values);
         output_line(oss.str());
     }
 };
