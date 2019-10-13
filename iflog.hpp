@@ -130,12 +130,12 @@
 #if defined(_MSC_VER)
     #define IFLOGL_RETV(lv,...) IFLOG_MSVC_EXPAND_VA_ARGS(IFLOG_GET_MACRONAME(__VA_ARGS__,IFLOG_RETV_10,IFLOG_RETV_09,IFLOG_RETV_08,IFLOG_RETV_07,IFLOG_RETV_06,IFLOG_RETV_05,IFLOG_RETV_04,IFLOG_RETV_03,IFLOG_RETV_02,IFLOG_RETV_01,IFLOG_RETV_00)(lv,__VA_ARGS__))
     #define IFLOGL_MOVE(lv,...) IFLOG_MSVC_EXPAND_VA_ARGS(IFLOG_GET_MACRONAME(__VA_ARGS__,IFLOG_MOVE_10,IFLOG_MOVE_09,IFLOG_MOVE_08,IFLOG_MOVE_07,IFLOG_MOVE_06,IFLOG_MOVE_05,IFLOG_MOVE_04,IFLOG_MOVE_03,IFLOG_MOVE_02,IFLOG_MOVE_01,IFLOG_MOVE_00)(lv,__VA_ARGS__))
-    #define IFLOGL_VOID(lv,...) IFLOG_MSVC_EXPAND_VA_ARGS(IFLOG_GET_MACRONAME(__VA_ARGS__,IFLOG_VOID_10,IFLOG_VOID_09,IFLOG_VOID_08,IFLOG_VOID_07,IFLOG_VOID_06,IFLOG_VOID_05,IFLOG_VOID_04,IFLOG_VOID_03,IFLOG_VOID_02,IFLOG_VOID_01,IFLOG_VOID_00)(lv,__VA_ARGS__))
+    #define IFLOGL_VOID(lv,...) IFLOG_MSVC_EXPAND_VA_ARGS(IFLOG_GET_MACRONAME(__VA_ARGS__,IFLOG_RETV_10,IFLOG_RETV_09,IFLOG_RETV_08,IFLOG_RETV_07,IFLOG_RETV_06,IFLOG_RETV_05,IFLOG_RETV_04,IFLOG_RETV_03,IFLOG_RETV_02,IFLOG_RETV_01,IFLOG_RETV_00)(lv,__VA_ARGS__))
     #define IFLOG_DIRECTORY_SEPARATOR_CHAR '\\'
 #else // defined(_MSC_VER)
     #define IFLOGL_RETV(lv,...) IFLOG_GET_MACRONAME(__VA_ARGS__,IFLOG_RETV_10,IFLOG_RETV_09,IFLOG_RETV_08,IFLOG_RETV_07,IFLOG_RETV_06,IFLOG_RETV_05,IFLOG_RETV_04,IFLOG_RETV_03,IFLOG_RETV_02,IFLOG_RETV_01,IFLOG_RETV_00)(lv,__VA_ARGS__)
     #define IFLOGL_MOVE(lv,...) IFLOG_GET_MACRONAME(__VA_ARGS__,IFLOG_MOVE_10,IFLOG_MOVE_09,IFLOG_MOVE_08,IFLOG_MOVE_07,IFLOG_MOVE_06,IFLOG_MOVE_05,IFLOG_MOVE_04,IFLOG_MOVE_03,IFLOG_MOVE_02,IFLOG_MOVE_01,IFLOG_MOVE_00)(lv,__VA_ARGS__)
-    #define IFLOGL_VOID(lv,...) IFLOG_GET_MACRONAME(__VA_ARGS__,IFLOG_VOID_10,IFLOG_VOID_09,IFLOG_VOID_08,IFLOG_VOID_07,IFLOG_VOID_06,IFLOG_VOID_05,IFLOG_VOID_04,IFLOG_VOID_03,IFLOG_VOID_02,IFLOG_VOID_01,IFLOG_VOID_00)(lv,__VA_ARGS__)
+    #define IFLOGL_VOID(lv,...) IFLOG_GET_MACRONAME(__VA_ARGS__,IFLOG_RETV_10,IFLOG_RETV_09,IFLOG_RETV_08,IFLOG_RETV_07,IFLOG_RETV_06,IFLOG_RETV_05,IFLOG_RETV_04,IFLOG_RETV_03,IFLOG_RETV_02,IFLOG_RETV_01,IFLOG_RETV_00)(lv,__VA_ARGS__)
     #define IFLOG_DIRECTORY_SEPARATOR_CHAR '/'
 #endif // defined(_MSC_VER)
 
@@ -167,18 +167,6 @@
 #define IFLOG_MOVE_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8       })
 #define IFLOG_MOVE_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
 #define IFLOG_MOVE_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
-
-#define IFLOG_VOID_00(lv,expr                               ) iflog::IfLog<decltype(expr)                                                                                                                                   >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}()                               })
-#define IFLOG_VOID_01(lv,expr,a1                            ) iflog::IfLog<decltype(expr),decltype(a1)                                                                                                                      >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1                            })
-#define IFLOG_VOID_02(lv,expr,a1,a2                         ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2                         })
-#define IFLOG_VOID_03(lv,expr,a1,a2,a3                      ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3                      })
-#define IFLOG_VOID_04(lv,expr,a1,a2,a3,a4                   ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4                   })
-#define IFLOG_VOID_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5                })
-#define IFLOG_VOID_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6             })
-#define IFLOG_VOID_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_VOID_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_VOID_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_VOID_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
 
 namespace iflog {
 
@@ -226,35 +214,6 @@ output_params(std::ostream& os, const std::vector<const char*>& names, const std
     output_params<Index+1, Values...>(os, names, values);
 }
 
-//template<class Expr, class... Values>
-//struct IfLog {
-//    static int log_return_value() {}
-//};
-//
-//template<class... Values>
-//struct IfLog<void, Values...> {
-//    static int log_return_value() {}
-//};
-//
-//template<class Expr, class... Values>
-//inline Expr log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values) {
-//    IfLog<Expr, Values...>::log_return_value(level, file, func, line, names, values);
-//}
-
-// for ill-formed, copy-list-initialization selected an explicit constructor. ref: https://cplusplus.github.io/LWG/issue2193
-//template<typename Expr>
-//static inline Expr log_return_value(int level, const char* file, const char* func, int line, const char* exprstr, Expr exprval)
-//{
-//#ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-//    if (level > iflog::iflog::loglevel) { return exprval; }
-//#endif
-//    std::ostringstream oss;
-//    output_header(oss, level, file, func, line);
-//    output_param(oss, "", exprstr, exprval);
-//    output_line(oss.str());
-//    return exprval;
-//}
-
 template<typename Expr, typename... Values>
 struct IfLog {
     static Expr log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
@@ -271,6 +230,7 @@ struct IfLog {
     }
 };
 
+// Partial specialization
 template<typename... Values>
 struct IfLog<void, Values...> {
     static void log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<nullptr_t, Values...> values)
@@ -285,19 +245,6 @@ struct IfLog<void, Values...> {
         output_line(oss.str());
     }
 };
-
-//template<>
-//static inline void log_return_value<void>(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
-//{
-//#ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-//    if (level > iflog::iflog::loglevel) { return; }
-//#endif
-//    std::ostringstream oss;
-//    output_header(oss, level, file, func, line);
-//    output_param(oss, "", names[0]);
-//    output_params<1, Values...>(oss, names, values);
-//    output_line(oss.str());
-//}
 
 // for ill-formed, copy-list-initialization selected an explicit constructor. ref: https://cplusplus.github.io/LWG/issue2193
 template<typename Expr>
@@ -325,32 +272,6 @@ static inline Expr log_return_move(int level, const char* file, const char* func
     output_params<1, Expr, Values...>(oss, names, values);
     output_line(oss.str());
     return std::move(std::get<0>(values));
-}
-
-// for ill-formed, copy-list-initialization selected an explicit constructor. ref: https://cplusplus.github.io/LWG/issue2193
-template<typename Expr>
-static inline void log_non_return(int level, const char* file, const char* func, int line, const char* exprstr, Expr /*exprval*/)
-{
-#ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel) { return; }
-#endif
-    std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", exprstr);
-    output_line(oss.str());
-}
-
-template<typename... Values>
-static inline void log_non_return(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
-{
-#ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel) { return; }
-#endif
-    std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", names[0]);
-    output_params<1, Values...>(oss, names, values);
-    output_line(oss.str());
 }
 
 } // namespace iflog
