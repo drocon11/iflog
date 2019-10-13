@@ -156,17 +156,17 @@
 #define IFLOG_RETV_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
 #define IFLOG_RETV_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
 
-#define IFLOG_MOVE_00(lv,expr                               ) iflog::log_return_move<decltype(expr)&&                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__, #expr                                          , std::move(expr)                                )
-#define IFLOG_MOVE_01(lv,expr,a1                            ) iflog::log_return_move<decltype(expr)&&,decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{std::move(expr),a1                            })
-#define IFLOG_MOVE_02(lv,expr,a1,a2                         ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{std::move(expr),a1,a2                         })
-#define IFLOG_MOVE_03(lv,expr,a1,a2,a3                      ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{std::move(expr),a1,a2,a3                      })
-#define IFLOG_MOVE_04(lv,expr,a1,a2,a3,a4                   ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{std::move(expr),a1,a2,a3,a4                   })
-#define IFLOG_MOVE_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{std::move(expr),a1,a2,a3,a4,a5                })
-#define IFLOG_MOVE_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{std::move(expr),a1,a2,a3,a4,a5,a6             })
-#define IFLOG_MOVE_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{std::move(expr),a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_MOVE_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_MOVE_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_MOVE_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
+#define IFLOG_MOVE_00(lv,expr                               ) iflog::IfLog<decltype(expr)                                                                                                                                   >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}()                               })
+#define IFLOG_MOVE_01(lv,expr,a1                            ) iflog::IfLog<decltype(expr),decltype(a1)                                                                                                                      >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1                            })
+#define IFLOG_MOVE_02(lv,expr,a1,a2                         ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2                         })
+#define IFLOG_MOVE_03(lv,expr,a1,a2,a3                      ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2,a3                      })
+#define IFLOG_MOVE_04(lv,expr,a1,a2,a3,a4                   ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2,a3,a4                   })
+#define IFLOG_MOVE_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2,a3,a4,a5                })
+#define IFLOG_MOVE_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2,a3,a4,a5,a6             })
+#define IFLOG_MOVE_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2,a3,a4,a5,a6,a7          })
+#define IFLOG_MOVE_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2,a3,a4,a5,a6,a7,a8       })
+#define IFLOG_MOVE_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
+#define IFLOG_MOVE_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return std::move(expr);}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
 
 namespace iflog {
 
@@ -226,7 +226,7 @@ struct IfLog {
         output_param(oss, "", names[0], std::get<0>(values));
         output_params<1, Expr, Values...>(oss, names, values);
         output_line(oss.str());
-        return std::get<0>(values);
+        return std::forward<Expr>(std::get<0>(values));
     }
 };
 
@@ -245,34 +245,6 @@ struct IfLog<void, Values...> {
         output_line(oss.str());
     }
 };
-
-// for ill-formed, copy-list-initialization selected an explicit constructor. ref: https://cplusplus.github.io/LWG/issue2193
-template<typename Expr>
-static inline Expr log_return_move(int level, const char* file, const char* func, int line, const char* exprstr, Expr exprval)
-{
-#ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel) { return std::move(exprval); }
-#endif
-    std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", exprstr);
-    output_line(oss.str());
-    return std::move(exprval);
-}
-
-template<typename Expr, typename... Values>
-static inline Expr log_return_move(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
-{
-#ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel) { return std::move(std::get<0>(values)); }
-#endif
-    std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", names[0]);
-    output_params<1, Expr, Values...>(oss, names, values);
-    output_line(oss.str());
-    return std::move(std::get<0>(values));
-}
 
 } // namespace iflog
 
