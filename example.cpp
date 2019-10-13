@@ -1,8 +1,13 @@
-
+#define IFLOG_HEADER_TO_OSTREAM "LOG" << level << ":" << IFLOG_FILENAME(file) << ":" << func << " | " << std::boolalpha << std::showpoint << std::showbase
 #define IFLOG_ENABLE_FEATURE_THREAD_SAFE
 //#define IFLOG_DISABLE_LOG
 //#define IFLOG_ENABLE_FEATURE_LOG_LEVEL
 //#define IFLOG_FUNCMACRO __FUNCSIG__
+
+#include <sstream>
+extern std::ostringstream g_oss;
+#define IFLOG_CUSTOM_OSTREAM g_oss
+
 #include "iflog.hpp"
 #include <iostream>
 #include <string>
@@ -117,6 +122,9 @@ int main()
     Runner* runner = IFLOG(new Runner());
     IFLOG(runner->run());
     IFLOG_VOID(delete runner);
+
+    std::cout << g_oss.str();
+    g_oss.str("");
 
     test_iflog();
 }

@@ -3,7 +3,7 @@
 #define IFLOG_HEADER_TO_OSTREAM "LOG" << level << ":" << IFLOG_FILENAME(file) << ":" << func << " | " << std::boolalpha << std::showpoint << std::showbase
 //#define IFLOG_HEADER_TO_OSTREAM "LOG" << level << ":" << IFLOG_FILENAME(file) << ":" << func << "@" << line << " | " << std::boolalpha << std::showpoint << std::showbase
 #include <sstream>
-static std::ostringstream g_oss;
+std::ostringstream g_oss;
 #define IFLOG_CUSTOM_OSTREAM g_oss
 #define IFLOG_ENABLE_FEATURE_THREAD_SAFE
 //#define IFLOG_DISABLE_LOG
