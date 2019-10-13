@@ -107,17 +107,17 @@
 #define IFLOG_MSVC_EXPAND_VA_ARGS(x) x
 #define IFLOG_GET_MACRONAME(_0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,MACRONAME,...) MACRONAME
 
-#define IFLOG_00(lv,expr                               ) iflog::IfLog<decltype(expr)                                                                                                                                   >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}()                               })
-#define IFLOG_01(lv,expr,a1                            ) iflog::IfLog<decltype(expr),decltype(a1)                                                                                                                      >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1                            })
-#define IFLOG_02(lv,expr,a1,a2                         ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2                         })
-#define IFLOG_03(lv,expr,a1,a2,a3                      ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3                      })
-#define IFLOG_04(lv,expr,a1,a2,a3,a4                   ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4                   })
-#define IFLOG_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5                })
-#define IFLOG_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6             })
-#define IFLOG_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::IfLog<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>::log_return_value(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
+#define IFLOG_00(lv,expr                               ) iflog::iflogger<decltype(expr)                                                                                                                                   >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}()                               })
+#define IFLOG_01(lv,expr,a1                            ) iflog::iflogger<decltype(expr),decltype(a1)                                                                                                                      >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1                            })
+#define IFLOG_02(lv,expr,a1,a2                         ) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2                         })
+#define IFLOG_03(lv,expr,a1,a2,a3                      ) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3                      })
+#define IFLOG_04(lv,expr,a1,a2,a3,a4                   ) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4                   })
+#define IFLOG_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5                })
+#define IFLOG_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6             })
+#define IFLOG_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7          })
+#define IFLOG_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8       })
+#define IFLOG_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
+#define IFLOG_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::iflogger<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>::log(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{[&]{if constexpr(std::is_void<decltype(expr)>::value){expr; return nullptr;}else{return expr;}}(),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
 
 namespace iflog {
 
@@ -125,49 +125,50 @@ struct iflog
 {
     static int loglevel;
     static std::mutex mtx;
+
+protected:
+    static void output_line(const std::string& s)
+    {
+#ifdef IFLOG_ENABLE_FEATURE_THREAD_SAFE
+        std::lock_guard<std::mutex> lock(iflog::iflog::mtx);
+#endif
+        IFLOG_CUSTOM_OSTREAM << s << std::endl;
+    }
+
+    static void output_header(std::ostream& os, int level, const char* file, const char* func, int line)
+    {
+        os << IFLOG_HEADER_TO_OSTREAM;
+    }
+
+    template<typename Value>
+    static auto output_param(std::ostream& os, const char* separator, const char* name, const Value& printable_value)
+    -> decltype(std::declval<std::ostream&>() << std::declval<const Value&>(), void())
+    {
+        os << separator << name << IFLOG_VALUE_SEPARATOR << printable_value;
+    }
+
+    static auto output_param(std::ostream& os, const char* separator, const char* name, ...)
+    -> void
+    {
+        os << separator << name;
+    }
+
+    template<std::size_t Index, typename... Values>
+    static typename std::enable_if<Index >= sizeof...(Values), void>::type
+    output_params(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values) {}
+
+    template<std::size_t Index, typename... Values>
+    static typename std::enable_if<Index < sizeof...(Values), void>::type
+    output_params(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values)
+    {
+        output_param(os, IFLOG_PARAM_SEPARATOR, names[Index], std::get<Index>(values));
+        output_params<Index+1, Values...>(os, names, values);
+    }
 };
 
-static inline void output_line(const std::string& s)
-{
-#ifdef IFLOG_ENABLE_FEATURE_THREAD_SAFE
-    std::lock_guard<std::mutex> lock(iflog::iflog::mtx);
-#endif
-    IFLOG_CUSTOM_OSTREAM << s << std::endl;
-}
-
-static inline void output_header(std::ostream& os, int level, const char* file, const char* func, int line)
-{
-    os << IFLOG_HEADER_TO_OSTREAM;
-}
-
-template<typename Value>
-static inline auto output_param(std::ostream& os, const char* separator, const char* name, const Value& printable_value)
--> decltype(std::declval<std::ostream&>() << std::declval<const Value&>(), void())
-{
-    os << separator << name << IFLOG_VALUE_SEPARATOR << printable_value;
-}
-
-static inline auto output_param(std::ostream& os, const char* separator, const char* name, ...)
--> void
-{
-    os << separator << name;
-}
-
-template<std::size_t Index, typename... Values>
-static inline typename std::enable_if<Index >= sizeof...(Values), void>::type
-output_params(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values) {}
-
-template<std::size_t Index, typename... Values>
-static inline typename std::enable_if<Index < sizeof...(Values), void>::type
-output_params(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values)
-{
-    output_param(os, IFLOG_PARAM_SEPARATOR, names[Index], std::get<Index>(values));
-    output_params<Index+1, Values...>(os, names, values);
-}
-
 template<typename Expr, typename... Values>
-struct IfLog {
-    static Expr log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
+struct iflogger : iflog {
+    static Expr log(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
     {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
         if (level > iflog::iflog::loglevel) { return std::get<0>(values); }
@@ -183,8 +184,8 @@ struct IfLog {
 
 // Partial specialization
 template<typename... Values>
-struct IfLog<void, Values...> {
-    static void log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<nullptr_t, Values...> values)
+struct iflogger<void, Values...> : iflog {
+    static void log(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<nullptr_t, Values...> values)
     {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
         if (level > iflog::iflog::loglevel) { return; }
@@ -209,53 +210,18 @@ struct iflog
 };
 }
 
-#define IFLOG(expr,...)          expr
-#define IFLOG_RETV(expr,...)     expr
-#define IFLOG_MOVE(expr,...)     expr
-#define IFLOG_VOID(expr,...)     expr
-#define IFLOG0(expr,...)         expr
-#define IFLOG1(expr,...)         expr
-#define IFLOG2(expr,...)         expr
-#define IFLOG3(expr,...)         expr
-#define IFLOG4(expr,...)         expr
-#define IFLOG5(expr,...)         expr
-#define IFLOG6(expr,...)         expr
-#define IFLOG7(expr,...)         expr
-#define IFLOG8(expr,...)         expr
-#define IFLOG9(expr,...)         expr
-#define IFLOG0_RETV(expr,...)    expr
-#define IFLOG1_RETV(expr,...)    expr
-#define IFLOG2_RETV(expr,...)    expr
-#define IFLOG3_RETV(expr,...)    expr
-#define IFLOG4_RETV(expr,...)    expr
-#define IFLOG5_RETV(expr,...)    expr
-#define IFLOG6_RETV(expr,...)    expr
-#define IFLOG7_RETV(expr,...)    expr
-#define IFLOG8_RETV(expr,...)    expr
-#define IFLOG9_RETV(expr,...)    expr
-#define IFLOG0_MOVE(expr,...)    expr
-#define IFLOG1_MOVE(expr,...)    expr
-#define IFLOG2_MOVE(expr,...)    expr
-#define IFLOG3_MOVE(expr,...)    expr
-#define IFLOG4_MOVE(expr,...)    expr
-#define IFLOG5_MOVE(expr,...)    expr
-#define IFLOG6_MOVE(expr,...)    expr
-#define IFLOG7_MOVE(expr,...)    expr
-#define IFLOG8_MOVE(expr,...)    expr
-#define IFLOG9_MOVE(expr,...)    expr
-#define IFLOG0_VOID(expr,...)    expr
-#define IFLOG1_VOID(expr,...)    expr
-#define IFLOG2_VOID(expr,...)    expr
-#define IFLOG3_VOID(expr,...)    expr
-#define IFLOG4_VOID(expr,...)    expr
-#define IFLOG5_VOID(expr,...)    expr
-#define IFLOG6_VOID(expr,...)    expr
-#define IFLOG7_VOID(expr,...)    expr
-#define IFLOG8_VOID(expr,...)    expr
-#define IFLOG9_VOID(expr,...)    expr
-#define IFLOGL_RETV(lv,expr,...) expr
-#define IFLOGL_MOVE(lv,expr,...) expr
-#define IFLOGL_VOID(lv,expr,...) expr
+#define IFLOG(expr,...)     expr
+#define IFLOG0(expr,...)    expr
+#define IFLOG1(expr,...)    expr
+#define IFLOG2(expr,...)    expr
+#define IFLOG3(expr,...)    expr
+#define IFLOG4(expr,...)    expr
+#define IFLOG5(expr,...)    expr
+#define IFLOG6(expr,...)    expr
+#define IFLOG7(expr,...)    expr
+#define IFLOG8(expr,...)    expr
+#define IFLOG9(expr,...)    expr
+#define IFLOGL(lv,expr,...) expr
 
 #endif // IFLOG_DISABLE_LOG
 
