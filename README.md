@@ -81,11 +81,11 @@ C++ interface logging library. Easy to insert into if condition.
   // LOG:main | foo.void_function() , arg1 => 0.3 , arg2 => 1.5
   ```
 
-## License
-
-  MIT License
-
 ## Compiler
 * Visual C++ 2015 Update 3 or later
 * gcc 6 or later
 * clang 4 or later
+
+## License
+
+  MIT License
