@@ -11,69 +11,33 @@ C++ interface logging library. Easy to insert into if condition.
 ## Examples
 
 * if statement
-  ```cpp
-  if( foo.has_error() )
-  ```
-  |
-  v
-  ```cpp
-  if( IFLOG(foo.has_error()) )
-  // LOG:main | foo.has_error() => true
-  ```
+  before:`if( foo.has_error() )`
+  after :`if( IFLOG(foo.has_error()) )`
+  output:`LOG:main | foo.has_error() => true`
 
-  ```cpp
-  if( foo.get_result(&result) )
-  ```
-  |
-  v
-  ```cpp
-  if( IFLOG(foo.get_result(&result), result) )
-  // LOG:main | foo.get_result(&result) => true , result => 1
-  ```
+  before:`if( foo.get_result(&result) )`
+  after :`if( IFLOG(foo.get_result(&result), result) )`
+  output:`LOG:main | foo.get_result(&result) => true , result => 1`
 
 * switch statement
-  ```cpp
-  switch( foo.get_status() )
-  ```
-  |
-  v
-  ```cpp
-  switch( IFLOG(foo.get_status()) )
-  // LOG:main | foo.get_status() => 2
-  ```
+  before:`switch( foo.get_status() )`
+  after :`switch( IFLOG(foo.get_status()) )`
+  output:`LOG:main | foo.get_status() => 2`
 
 * while statement
-  ```cpp
-  while( !foo.is_completed() )
-  ```
-  |
-  v
-  ```cpp
-  while( IFLOG(!foo.is_completed()) )
-  // LOG:main | !foo.is_completed() => false
-  ```
+  before:`while( !foo.is_completed() )`
+  after :`while( IFLOG(!foo.is_completed()) )`
+  output:`LOG:main | !foo.is_completed() => false`
 
 * return statement
-  ```cpp
-  return foo.do_something(arg1, arg2);
-  ```
-  |
-  v
-  ```cpp
-  return IFLOG(foo.do_something(arg1, arg2), arg1, arg2);
-  // LOG:main | foo.do_something(arg1, arg2) => -1 , arg1 => 0.3 , arg2 => 1.5
-  ```
+  before:`return foo.do_something(arg1, arg2);`
+  after :`return IFLOG(foo.do_something(arg1, arg2), arg1, arg2);`
+  output:`LOG:main | foo.do_something(arg1, arg2) => -1 , arg1 => 0.3 , arg2 => 1.5`
 
 * void function
-  ```cpp
-  foo.void_function();
-  ```
-  |
-  v
-  ```cpp
-  IFLOG_VOID(foo.void_function(arg1, arg2));
-  // LOG:main | foo.void_function() , arg1 => 0.3 , arg2 => 1.5
-  ```
+  before:`foo.void_function();`
+  after :`IFLOG_VOID(foo.void_function(arg1, arg2));`
+  output:`LOG:main | foo.void_function() , arg1 => 0.3 , arg2 => 1.5`
 
 ## License
 
