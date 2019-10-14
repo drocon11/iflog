@@ -1,6 +1,6 @@
 //
 // iflog - C++ interface logging library. Easy to insert into if condition.
-// vesion 0.0.3
+// vesion 0.0.4
 // https://github.com/drocon11/iflog
 // Licensed under the MIT License <http://opensource.org/licenses/MIT>.
 // Copyright (c) 2019 Yukinori Yamazoe
@@ -61,6 +61,10 @@
         #define IFLOG_HEADER_TO_OSTREAM "LOG:" << std::left << std::setw(32) << func << " | " << std::boolalpha << std::showpoint << std::showbase
 //      #define IFLOG_HEADER_TO_OSTREAM "LOG:" << func << " | " << std::boolalpha << std::showpoint << std::showbase
     #endif
+#endif
+
+#ifndef IFLOG_FOOTER_TO_OSTREAM
+    #define IFLOG_FOOTER_TO_OSTREAM std::endl
 #endif
 
 #ifndef IFLOG_FUNCMACRO
@@ -188,27 +192,32 @@ struct iflog
     static std::mutex mtx;
 };
 
-static inline void output_line(const std::string& s)
+static inline void output_line_to_ostream(const std::string& s)
 {
 #ifdef IFLOG_ENABLE_FEATURE_THREAD_SAFE
     std::lock_guard<std::mutex> lock(iflog::iflog::mtx);
 #endif
-    IFLOG_CUSTOM_OSTREAM << s << std::endl;
+    IFLOG_CUSTOM_OSTREAM << s;
 }
 
-static inline void output_header(std::ostream& os, int level, const char* file, const char* func, int line)
+static inline void output_header_to_ss(std::ostream& os, int level, const char* file, const char* func, int line)
 {
     os << IFLOG_HEADER_TO_OSTREAM;
 }
 
+static inline void output_footer_to_ss(std::ostream& os)
+{
+    os << IFLOG_FOOTER_TO_OSTREAM;
+}
+
 template<typename Value>
-static inline auto output_param(std::ostream& os, const char* separator, const char* name, const Value& printable_value)
+static inline auto output_param_to_ss(std::ostream& os, const char* separator, const char* name, const Value& printable_value)
 -> decltype(std::declval<std::ostream&>() << std::declval<const Value&>(), void())
 {
     os << separator << name << IFLOG_VALUE_SEPARATOR << printable_value;
 }
 
-static inline auto output_param(std::ostream& os, const char* separator, const char* name, ...)
+static inline auto output_param_to_ss(std::ostream& os, const char* separator, const char* name, ...)
 -> void
 {
     os << separator << name;
@@ -216,14 +225,14 @@ static inline auto output_param(std::ostream& os, const char* separator, const c
 
 template<std::size_t Index, typename... Values>
 static inline typename std::enable_if<Index >= sizeof...(Values), void>::type
-output_params(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values) {}
+output_params_to_ss(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values) {}
 
 template<std::size_t Index, typename... Values>
 static inline typename std::enable_if<Index < sizeof...(Values), void>::type
-output_params(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values)
+output_params_to_ss(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values)
 {
-    output_param(os, IFLOG_PARAM_SEPARATOR, names[Index], std::get<Index>(values));
-    output_params<Index+1, Values...>(os, names, values);
+    output_param_to_ss(os, IFLOG_PARAM_SEPARATOR, names[Index], std::get<Index>(values));
+    output_params_to_ss<Index+1, Values...>(os, names, values);
 }
 
 // for ill-formed, copy-list-initialization selected an explicit constructor. ref: https://cplusplus.github.io/LWG/issue2193
@@ -234,9 +243,10 @@ static inline Expr log_return_value(int level, const char* file, const char* fun
     if (level > iflog::iflog::loglevel) { return exprval; }
 #endif
     std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", exprstr, exprval);
-    output_line(oss.str());
+    output_header_to_ss(oss, level, file, func, line);
+    output_param_to_ss(oss, "", exprstr, exprval);
+    output_footer_to_ss(oss);
+    output_line_to_ostream(oss.str());
     return exprval;
 }
 
@@ -247,10 +257,11 @@ static inline Expr log_return_value(int level, const char* file, const char* fun
     if (level > iflog::iflog::loglevel) { return std::get<0>(values); }
 #endif
     std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", names[0], std::get<0>(values));
-    output_params<1, Expr, Values...>(oss, names, values);
-    output_line(oss.str());
+    output_header_to_ss(oss, level, file, func, line);
+    output_param_to_ss(oss, "", names[0], std::get<0>(values));
+    output_params_to_ss<1, Expr, Values...>(oss, names, values);
+    output_footer_to_ss(oss);
+    output_line_to_ostream(oss.str());
     return std::get<0>(values);
 }
 
@@ -262,9 +273,10 @@ static inline Expr log_return_move(int level, const char* file, const char* func
     if (level > iflog::iflog::loglevel) { return std::move(exprval); }
 #endif
     std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", exprstr);
-    output_line(oss.str());
+    output_header_to_ss(oss, level, file, func, line);
+    output_param_to_ss(oss, "", exprstr);
+    output_footer_to_ss(oss);
+    output_line_to_ostream(oss.str());
     return std::move(exprval);
 }
 
@@ -275,10 +287,11 @@ static inline Expr log_return_move(int level, const char* file, const char* func
     if (level > iflog::iflog::loglevel) { return std::move(std::get<0>(values)); }
 #endif
     std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", names[0]);
-    output_params<1, Expr, Values...>(oss, names, values);
-    output_line(oss.str());
+    output_header_to_ss(oss, level, file, func, line);
+    output_param_to_ss(oss, "", names[0]);
+    output_params_to_ss<1, Expr, Values...>(oss, names, values);
+    output_footer_to_ss(oss);
+    output_line_to_ostream(oss.str());
     return std::move(std::get<0>(values));
 }
 
@@ -290,22 +303,24 @@ static inline void log_non_return(int level, const char* file, const char* func,
     if (level > iflog::iflog::loglevel) { return; }
 #endif
     std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", exprstr);
-    output_line(oss.str());
+    output_header_to_ss(oss, level, file, func, line);
+    output_param_to_ss(oss, "", exprstr);
+    output_footer_to_ss(oss);
+    output_line_to_ostream(oss.str());
 }
 
-template<typename... Values>
-static inline void log_non_return(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Values...> values)
+template<typename Expr, typename... Values>
+static inline void log_non_return(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
 {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
     if (level > iflog::iflog::loglevel) { return; }
 #endif
     std::ostringstream oss;
-    output_header(oss, level, file, func, line);
-    output_param(oss, "", names[0]);
-    output_params<1, Values...>(oss, names, values);
-    output_line(oss.str());
+    output_header_to_ss(oss, level, file, func, line);
+    output_param_to_ss(oss, "", names[0]);
+    output_params_to_ss<1, Expr, Values...>(oss, names, values);
+    output_footer_to_ss(oss);
+    output_line_to_ostream(oss.str());
 }
 
 } // namespace iflog
