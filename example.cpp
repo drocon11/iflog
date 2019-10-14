@@ -18,6 +18,7 @@ bool is_error()
 
 void void_func()
 {
+    std::cout << __FUNCTION__ << std::endl;
 }
 
 class AAA
