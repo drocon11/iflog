@@ -13,14 +13,20 @@ C++ interface logging library. Easy to insert into if condition.
 * if statement
   ```cpp
   if( foo.has_error() )
+  ```
   |
   v
+  ```cpp
   if( IFLOG(foo.has_error()) )
   // LOG:main | foo.has_error() => true
+  ```
 
+  ```cpp
   if( foo.get_result(&result) )
+  ```
   |
   v
+  ```cpp
   if( IFLOG(foo.get_result(&result), result) )
   // LOG:main | foo.get_result(&result) => true , result => 1
   ```
@@ -28,8 +34,10 @@ C++ interface logging library. Easy to insert into if condition.
 * switch statement
   ```cpp
   switch( foo.get_status() )
+  ```
   |
   v
+  ```cpp
   switch( IFLOG(foo.get_status()) )
   // LOG:main | foo.get_status() => 2
   ```
@@ -37,8 +45,10 @@ C++ interface logging library. Easy to insert into if condition.
 * while statement
   ```cpp
   while( !foo.is_completed() )
+  ```
   |
   v
+  ```cpp
   while( IFLOG(!foo.is_completed()) )
   // LOG:main | !foo.is_completed() => false
   ```
@@ -46,8 +56,10 @@ C++ interface logging library. Easy to insert into if condition.
 * return statement
   ```cpp
   return foo.do_something(arg1, arg2);
+  ```
   |
   v
+  ```cpp
   return IFLOG(foo.do_something(arg1, arg2), arg1, arg2);
   // LOG:main | foo.do_something(arg1, arg2) => -1 , arg1 => 0.3 , arg2 => 1.5
   ```
@@ -55,8 +67,10 @@ C++ interface logging library. Easy to insert into if condition.
 * void function
   ```cpp
   foo.void_function();
+  ```
   |
   v
+  ```cpp
   IFLOG_VOID(foo.void_function(arg1, arg2));
   // LOG:main | foo.void_function() , arg1 => 0.3 , arg2 => 1.5
   ```
