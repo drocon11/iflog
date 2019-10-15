@@ -1,12 +1,12 @@
 # iflog
 
-C++ interface logging library. Easy to insert into if condition.
+C++11 interface logging library. Easy to insert log without change control structures.
 
 ## Features
 
 * C++11
 * Header-only
-* Easy to insert into statement.
+* Easy to insert log without change control structures.
 
 ## Examples
 
