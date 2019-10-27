@@ -1,5 +1,9 @@
 
 #define IFLOG_ENABLE_FEATURE_THREAD_SAFE
+#define IFLOG_HEADER_TO_OSTREAM "LOG" << level << ":" << IFLOG_FILENAME(file) << ":" << func << " | " << std::boolalpha << std::showpoint << std::showbase
+#include <sstream>
+std::ostringstream g_oss;
+#define IFLOG_CUSTOM_OSTREAM g_oss
 //#define IFLOG_DISABLE_LOG
 //#define IFLOG_ENABLE_FEATURE_LOG_LEVEL
 //#define IFLOG_FUNCMACRO __FUNCSIG__
@@ -18,7 +22,6 @@ bool is_error()
 
 void void_func()
 {
-    std::cout << __FUNCTION__ << std::endl;
 }
 
 class AAA
@@ -118,6 +121,9 @@ int main()
     Runner* runner = IFLOG(new Runner());
     IFLOG(runner->run());
     IFLOG_VOID(delete runner);
+
+    std::cout << g_oss.str();
+    g_oss.str("");
 
     test_iflog();
 }

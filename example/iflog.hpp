@@ -34,16 +34,14 @@
 #ifndef IFLOG_DISABLE_LOG
 
 #include <vector>       // std::vector
-#include <tuple>        // std::tuple
-#include <type_traits>  // std::enable_if
-#include <utility>      // std::move, std::declval, std::get
+#include <utility>      // std::move, std::declval
 #include <iostream>     // std::cout
 #include <sstream>      // std::ostringstream
 #include <ostream>      // std::ostream, std::endl
 #include <iomanip>      // std::setw
 #include <ios>          // std::left, std::boolalpha, std::showpoint, std::showbase
 #include <cstring>      // std::strrchr
-#include <cstddef>      // std::size_t
+#include <cstddef>      // std::nullptr_t
 #include <mutex>        // std::mutex, std::lock_guard
 
 //#define IFLOG_ENABLE_FEATURE_THREAD_SAFE  // std::mutex iflog::iflog::mtx;
@@ -148,136 +146,165 @@
 #define IFLOG_MSVC_EXPAND_VA_ARGS(x) x
 #define IFLOG_GET_MACRONAME(_0,_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,MACRONAME,...) MACRONAME
 
-#define IFLOG_RETV_00(lv,expr                               ) iflog::log_return_value<decltype(expr)                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{expr                               })
-#define IFLOG_RETV_01(lv,expr,a1                            ) iflog::log_return_value<decltype(expr),decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{expr,a1                            })
-#define IFLOG_RETV_02(lv,expr,a1,a2                         ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{expr,a1,a2                         })
-#define IFLOG_RETV_03(lv,expr,a1,a2,a3                      ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{expr,a1,a2,a3                      })
-#define IFLOG_RETV_04(lv,expr,a1,a2,a3,a4                   ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{expr,a1,a2,a3,a4                   })
-#define IFLOG_RETV_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{expr,a1,a2,a3,a4,a5                })
-#define IFLOG_RETV_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{expr,a1,a2,a3,a4,a5,a6             })
-#define IFLOG_RETV_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{expr,a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_RETV_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{expr,a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_RETV_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_RETV_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
+#define IFLOG_RETV_00(lv,expr                               ) iflog::log_return_value<decltype(expr)                                                                                                                                   >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{                                        },                              }.get()
+#define IFLOG_RETV_01(lv,expr,a1                            ) iflog::log_return_value<decltype(expr),decltype(a1)                                                                                                                      >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1                                     },a1                            }.get()
+#define IFLOG_RETV_02(lv,expr,a1,a2                         ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2                                 },a1,a2                         }.get()
+#define IFLOG_RETV_03(lv,expr,a1,a2,a3                      ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2,#a3                             },a1,a2,a3                      }.get()
+#define IFLOG_RETV_04(lv,expr,a1,a2,a3,a4                   ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2,#a3,#a4                         },a1,a2,a3,a4                   }.get()
+#define IFLOG_RETV_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2,#a3,#a4,#a5                     },a1,a2,a3,a4,a5                }.get()
+#define IFLOG_RETV_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2,#a3,#a4,#a5,#a6                 },a1,a2,a3,a4,a5,a6             }.get()
+#define IFLOG_RETV_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2,#a3,#a4,#a5,#a6,#a7             },a1,a2,a3,a4,a5,a6,a7          }.get()
+#define IFLOG_RETV_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },a1,a2,a3,a4,a5,a6,a7,a8       }.get()
+#define IFLOG_RETV_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },a1,a2,a3,a4,a5,a6,a7,a8,a9    }.get()
+#define IFLOG_RETV_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_value<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,expr,{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},a1,a2,a3,a4,a5,a6,a7,a8,a9,a10}.get()
 
-#define IFLOG_MOVE_00(lv,expr                               ) iflog::log_return_move<decltype(expr)&&                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{std::move(expr)                               })
-#define IFLOG_MOVE_01(lv,expr,a1                            ) iflog::log_return_move<decltype(expr)&&,decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{std::move(expr),a1                            })
-#define IFLOG_MOVE_02(lv,expr,a1,a2                         ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{std::move(expr),a1,a2                         })
-#define IFLOG_MOVE_03(lv,expr,a1,a2,a3                      ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{std::move(expr),a1,a2,a3                      })
-#define IFLOG_MOVE_04(lv,expr,a1,a2,a3,a4                   ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{std::move(expr),a1,a2,a3,a4                   })
-#define IFLOG_MOVE_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{std::move(expr),a1,a2,a3,a4,a5                })
-#define IFLOG_MOVE_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{std::move(expr),a1,a2,a3,a4,a5,a6             })
-#define IFLOG_MOVE_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{std::move(expr),a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_MOVE_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_MOVE_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_MOVE_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_move<decltype(expr)&&,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{std::move(expr),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
+#define IFLOG_MOVE_00(lv,expr                               ) iflog::log_return_move<decltype(expr)                                                                                                                                   >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{                                        },                              }.get()
+#define IFLOG_MOVE_01(lv,expr,a1                            ) iflog::log_return_move<decltype(expr),decltype(a1)                                                                                                                      >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1                                     },a1                            }.get()
+#define IFLOG_MOVE_02(lv,expr,a1,a2                         ) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2                                 },a1,a2                         }.get()
+#define IFLOG_MOVE_03(lv,expr,a1,a2,a3                      ) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2,#a3                             },a1,a2,a3                      }.get()
+#define IFLOG_MOVE_04(lv,expr,a1,a2,a3,a4                   ) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2,#a3,#a4                         },a1,a2,a3,a4                   }.get()
+#define IFLOG_MOVE_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2,#a3,#a4,#a5                     },a1,a2,a3,a4,a5                }.get()
+#define IFLOG_MOVE_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2,#a3,#a4,#a5,#a6                 },a1,a2,a3,a4,a5,a6             }.get()
+#define IFLOG_MOVE_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2,#a3,#a4,#a5,#a6,#a7             },a1,a2,a3,a4,a5,a6,a7          }.get()
+#define IFLOG_MOVE_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },a1,a2,a3,a4,a5,a6,a7,a8       }.get()
+#define IFLOG_MOVE_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },a1,a2,a3,a4,a5,a6,a7,a8,a9    }.get()
+#define IFLOG_MOVE_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_return_move<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,std::move(expr),{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},a1,a2,a3,a4,a5,a6,a7,a8,a9,a10}.get()
 
-#define IFLOG_VOID_00(lv,expr                               ) iflog::log_non_return<std::nullptr_t                                                                                                                                   >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr                                         },{(expr,nullptr)                               })
-#define IFLOG_VOID_01(lv,expr,a1                            ) iflog::log_non_return<std::nullptr_t,decltype(a1)                                                                                                                      >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1                                     },{(expr,nullptr),a1                            })
-#define IFLOG_VOID_02(lv,expr,a1,a2                         ) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2)                                                                                                         >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2                                 },{(expr,nullptr),a1,a2                         })
-#define IFLOG_VOID_03(lv,expr,a1,a2,a3                      ) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2),decltype(a3)                                                                                            >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3                             },{(expr,nullptr),a1,a2,a3                      })
-#define IFLOG_VOID_04(lv,expr,a1,a2,a3,a4                   ) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4                         },{(expr,nullptr),a1,a2,a3,a4                   })
-#define IFLOG_VOID_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5                     },{(expr,nullptr),a1,a2,a3,a4,a5                })
-#define IFLOG_VOID_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6                 },{(expr,nullptr),a1,a2,a3,a4,a5,a6             })
-#define IFLOG_VOID_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7             },{(expr,nullptr),a1,a2,a3,a4,a5,a6,a7          })
-#define IFLOG_VOID_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },{(expr,nullptr),a1,a2,a3,a4,a5,a6,a7,a8       })
-#define IFLOG_VOID_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },{(expr,nullptr),a1,a2,a3,a4,a5,a6,a7,a8,a9    })
-#define IFLOG_VOID_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_non_return<std::nullptr_t,decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>(lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,{#expr,#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},{(expr,nullptr),a1,a2,a3,a4,a5,a6,a7,a8,a9,a10})
+#define IFLOG_VOID_00(lv,expr                               ) iflog::log_non_return<decltype(expr)                                                                                                                                   >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{                                        },                              }.get()
+#define IFLOG_VOID_01(lv,expr,a1                            ) iflog::log_non_return<decltype(expr),decltype(a1)                                                                                                                      >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1                                     },a1                            }.get()
+#define IFLOG_VOID_02(lv,expr,a1,a2                         ) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2)                                                                                                         >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2                                 },a1,a2                         }.get()
+#define IFLOG_VOID_03(lv,expr,a1,a2,a3                      ) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2),decltype(a3)                                                                                            >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2,#a3                             },a1,a2,a3                      }.get()
+#define IFLOG_VOID_04(lv,expr,a1,a2,a3,a4                   ) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4)                                                                               >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2,#a3,#a4                         },a1,a2,a3,a4                   }.get()
+#define IFLOG_VOID_05(lv,expr,a1,a2,a3,a4,a5                ) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5)                                                                  >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2,#a3,#a4,#a5                     },a1,a2,a3,a4,a5                }.get()
+#define IFLOG_VOID_06(lv,expr,a1,a2,a3,a4,a5,a6             ) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6)                                                     >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2,#a3,#a4,#a5,#a6                 },a1,a2,a3,a4,a5,a6             }.get()
+#define IFLOG_VOID_07(lv,expr,a1,a2,a3,a4,a5,a6,a7          ) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7)                                        >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2,#a3,#a4,#a5,#a6,#a7             },a1,a2,a3,a4,a5,a6,a7          }.get()
+#define IFLOG_VOID_08(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8       ) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8)                           >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8         },a1,a2,a3,a4,a5,a6,a7,a8       }.get()
+#define IFLOG_VOID_09(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9    ) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9)              >{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9     },a1,a2,a3,a4,a5,a6,a7,a8,a9    }.get()
+#define IFLOG_VOID_10(lv,expr,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10) iflog::log_non_return<decltype(expr),decltype(a1),decltype(a2),decltype(a3),decltype(a4),decltype(a5),decltype(a6),decltype(a7),decltype(a8),decltype(a9),decltype(a10)>{lv,__FILE__,IFLOG_FUNCMACRO,__LINE__,#expr,(expr,nullptr),{#a1,#a2,#a3,#a4,#a5,#a6,#a7,#a8,#a9,#a10},a1,a2,a3,a4,a5,a6,a7,a8,a9,a10}.get()
 
 namespace iflog {
 
-struct iflog
+class iflog
 {
+public:
     static int loglevel;
     static std::mutex mtx;
+
+protected:
+    void output_to_ostream()
+    {
+#ifdef IFLOG_ENABLE_FEATURE_THREAD_SAFE
+        std::lock_guard<std::mutex> lock(iflog::iflog::mtx);
+#endif
+        IFLOG_CUSTOM_OSTREAM << oss_.str();
+    }
+
+    void output_header(int level, const char* file, const char* func, int line)
+    {
+        oss_ << IFLOG_HEADER_TO_OSTREAM;
+    }
+
+    void output_footer()
+    {
+        oss_ << IFLOG_FOOTER_TO_OSTREAM;
+    }
+
+    template<typename Value>
+    auto output_param(const char* separator, const char* name, const Value& printable_value)
+    -> decltype(std::declval<std::ostream&>() << std::declval<const Value&>(), void())
+    {
+        oss_ << separator << name << IFLOG_VALUE_SEPARATOR << printable_value;
+    }
+
+    auto output_param(const char* separator, const char* name, ...)
+    -> void
+    {
+        oss_ << separator << name;
+    }
+
+    void output_params(int index, const std::vector<const char*>& argsstr) {}
+
+    template <class Head, class... Tail>
+    void output_params(int index, const std::vector<const char*>& argsstr, Head&& headval, Tail&&... tailval)
+    {
+        output_param(IFLOG_PARAM_SEPARATOR, argsstr[index], headval);
+        output_params(index + 1, argsstr, std::forward<Tail>(tailval)...);
+    }
+
+    std::ostringstream oss_;
 };
 
-static inline void output_line_to_ostream(const std::string& s)
+template<typename Expr, typename... Args>
+class log_return_value : iflog
 {
-#ifdef IFLOG_ENABLE_FEATURE_THREAD_SAFE
-    std::lock_guard<std::mutex> lock(iflog::iflog::mtx);
-#endif
-    IFLOG_CUSTOM_OSTREAM << s;
-}
-
-static inline void output_header_to_ss(std::ostream& os, int level, const char* file, const char* func, int line)
-{
-    os << IFLOG_HEADER_TO_OSTREAM;
-}
-
-static inline void output_footer_to_ss(std::ostream& os)
-{
-    os << IFLOG_FOOTER_TO_OSTREAM;
-}
-
-template<typename Value>
-static inline auto output_param_to_ss(std::ostream& os, const char* separator, const char* name, const Value& printable_value)
--> decltype(std::declval<std::ostream&>() << std::declval<const Value&>(), void())
-{
-    os << separator << name << IFLOG_VALUE_SEPARATOR << printable_value;
-}
-
-static inline auto output_param_to_ss(std::ostream& os, const char* separator, const char* name, ...)
--> void
-{
-    os << separator << name;
-}
-
-template<std::size_t Index, typename... Values>
-static inline typename std::enable_if<Index >= sizeof...(Values), void>::type
-output_params_to_ss(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values) {}
-
-template<std::size_t Index, typename... Values>
-static inline typename std::enable_if<Index < sizeof...(Values), void>::type
-output_params_to_ss(std::ostream& os, const std::vector<const char*>& names, const std::tuple<Values...>& values)
-{
-    output_param_to_ss(os, IFLOG_PARAM_SEPARATOR, names[Index], std::get<Index>(values));
-    output_params_to_ss<Index+1, Values...>(os, names, values);
-}
-
-template<typename Expr, typename... Values>
-static inline Expr log_return_value(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
-{
+public:
+    log_return_value(int level, const char* file, const char* func, int line, const char* exprstr, const Expr&/*&&*/ exprval, const std::vector<const char*>& argsstr, Args...argsval) : retval_(exprval)
+    {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel) { return std::get<0>(values); }
+        if (level > iflog::iflog::loglevel) { return; }
 #endif
-    std::ostringstream oss;
-    output_header_to_ss(oss, level, file, func, line);
-    output_param_to_ss(oss, "", names[0], std::get<0>(values));
-    output_params_to_ss<1, Expr, Values...>(oss, names, values);
-    output_footer_to_ss(oss);
-    output_line_to_ostream(oss.str());
-    return std::get<0>(values);
-}
+        output_header(level, file, func, line);
+        output_param("", exprstr, exprval);
+        output_params(0, argsstr, argsval...);
+        output_footer();
+        output_to_ostream();
+    }
 
-template<typename Expr, typename... Values>
-static inline Expr log_return_move(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
-{
-#ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel) { return std::move(std::get<0>(values)); }
-#endif
-    std::ostringstream oss;
-    output_header_to_ss(oss, level, file, func, line);
-    output_param_to_ss(oss, "", names[0]);
-    output_params_to_ss<1, Expr, Values...>(oss, names, values);
-    output_footer_to_ss(oss);
-    output_line_to_ostream(oss.str());
-    return std::move(std::get<0>(values));
-}
+    const Expr& get() const
+    {
+        return retval_;
+    }
 
-template<typename Expr, typename... Values>
-static inline void log_non_return(int level, const char* file, const char* func, int line, std::vector<const char*> names, std::tuple<Expr, Values...> values)
+private:
+    const Expr &retval_;
+};
+
+template<typename Expr, typename... Args>
+class log_return_move : iflog
 {
+public:
+    log_return_move(int level, const char* file, const char* func, int line, const char* exprstr, Expr&& exprval, const std::vector<const char*>& argsstr, Args...argsval) : retval_(std::move(exprval))
+    {
 #ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
-    if (level > iflog::iflog::loglevel) { return; }
+        if (level > iflog::iflog::loglevel) { return; }
 #endif
-    std::ostringstream oss;
-    output_header_to_ss(oss, level, file, func, line);
-    output_param_to_ss(oss, "", names[0]);
-    output_params_to_ss<1, Expr, Values...>(oss, names, values);
-    output_footer_to_ss(oss);
-    output_line_to_ostream(oss.str());
-}
+        output_header(level, file, func, line);
+        output_param("", exprstr);
+        output_params(0, argsstr, argsval...);
+        output_footer();
+        output_to_ostream();
+    }
+
+    Expr get()
+    {
+        return std::move(retval_);
+    }
+
+private:
+    Expr&& retval_;
+};
+
+template<typename Expr, typename... Args>
+class log_non_return : iflog
+{
+public:
+    log_non_return(int level, const char* file, const char* func, int line, const char* exprstr, std::nullptr_t dummyval, const std::vector<const char*>& argsstr, Args...argsval)
+    {
+#ifdef IFLOG_ENABLE_FEATURE_LOG_LEVEL
+        if (level > iflog::iflog::loglevel) { return; }
+#endif
+        output_header(level, file, func, line);
+        output_param("", exprstr);
+        output_params(0, argsstr, argsval...);
+        output_footer();
+        output_to_ostream();
+    }
+
+    Expr get()
+    {
+        return;
+    }
+};
 
 } // namespace iflog
 
