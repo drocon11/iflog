@@ -72,13 +72,13 @@ C++11 interface logging library. Easy to insert log without change control struc
 * void function
   ```cpp
   // before
-  foo.void_function();
+  foo.void_function(arg1, arg2);
 
   // after
   IFLOG_VOID(foo.void_function(arg1, arg2));
 
   // output
-  // LOG:main | foo.void_function() , arg1 => 0.3 , arg2 => 1.5
+  // LOG:main | foo.void_function(arg1, arg2) , arg1 => 0.3 , arg2 => 1.5
   ```
 
 ## Compiler
