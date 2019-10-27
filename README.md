@@ -1,12 +1,12 @@
 # iflog
 
-C++11 interface logging library. Easy to insert log without change control structures.
+C++11 interface logging library. Easy to insert log without change control flow.
 
 ## Features
 
 * C++11
 * Header-only
-* Easy to insert log without change control structures.
+* Easy to insert log without change control flow.
 
 ## Examples
 
@@ -82,6 +82,7 @@ C++11 interface logging library. Easy to insert log without change control struc
   ```
 
 ## Compiler
+
 * Visual C++ 2015 Update 3 or later
 * gcc 4.6 or later
 * clang 3.4 or later
